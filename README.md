@@ -25,7 +25,9 @@ export default class ZmqRequester {
 ```typescript
 const requester = new ZmqRequester(url); // socket open + connect
 const res = await requester.request({ type: 'get' }); // awaitable
-// do domething with res
+
+// do domething with res...
+
 requester.dispose(); // disconnect + close
 ```
 
@@ -55,6 +57,8 @@ const responder = new ZmqResponder(url, (request, respond) => {
     respond({ success: false, reason: 'unknown type' });
   }
 });
+
 // responds requests...
+
 responder.dispose(); // unbind + close
 ```

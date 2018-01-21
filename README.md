@@ -1,4 +1,12 @@
+[![Build Status](https://travis-ci.org/bitrinjani/zmq.svg?branch=master)](https://travis-ci.org/bitrinjani/zmq) [![Coverage Status](https://coveralls.io/repos/github/bitrinjani/zmq/badge.svg?branch=master&i=2)](https://coveralls.io/github/bitrinjani/zmq?branch=master) [![npm version](https://badge.fury.io/js/%40bitr%2Fzmq.svg)](https://badge.fury.io/js/%40bitr%2Fzmq)
+
 # Zeromq.js wrapper for async/await
+
+## Install
+
+```
+npm install @bitr/zmq
+```
 
 ## ZmqRequester
 

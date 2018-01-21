@@ -44,7 +44,7 @@ export default class ZmqResponder {
 }
 ```
 
-The constructor reveals zeromq's `send` method through `respond` parameter. ([Revealing constructor pattern](https://blog.domenic.me/the-revealing-constructor-pattern/))
+The constructor reveals zeromq's `send` method through `handler`'s `respond` parameter. ([Revealing constructor pattern](https://blog.domenic.me/the-revealing-constructor-pattern/))
 
 ### Example
 

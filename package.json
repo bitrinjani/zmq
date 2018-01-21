@@ -1,0 +1,55 @@
+{
+  "name": "@bitr/zmq",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "test": "jest --coverage --runInBand && cat ./coverage/lcov.info | coveralls",
+    "jest": "jest --runInBand",
+    "cov": "jest --coverage --runInBand"
+  },
+  "keywords": [
+    "typescript", "zeromq", "await"
+  ],
+  "repository": "https://github.com/bitrinjani/zmq",
+  "author": "bitrinjani <bitrinjani@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "zeromq": "^4.6.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^21.1.4",
+    "@types/lodash": "^4.14.91",
+    "@types/node": "^8.0.46",
+    "coveralls": "^3.0.0",
+    "jest": "^21.0.3",
+    "ts-jest": "^21.0.0",
+    "typescript": "^2.5.3"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "/__tests__/.*\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ],
+    "mapCoverage": true,
+    "collectCoverageFrom": [
+      "**/*.{ts,tsx}",
+      "!**/__tests__/**",
+      "!**/node_modules/**",
+      "!**/*.d.ts",
+      "!**/types.ts"
+    ]
+  }
+}

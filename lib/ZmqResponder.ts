@@ -13,7 +13,7 @@ export default class ZmqResponder<Request, Response> {
   private responder: RepSocket;
 
   constructor(
-    private readonly url,
+    private readonly url: string,
     private readonly handler: (request: Request | undefined, respond: (response: Response) => void) => void
   ) {
     this.responder = socket('rep');

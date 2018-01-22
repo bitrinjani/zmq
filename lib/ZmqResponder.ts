@@ -9,29 +9,29 @@ interface RepSocket extends EventEmitter {
   close: () => void;
 }
 
-export default class ZmqResponder {
+export default class ZmqResponder<Request, Response> {
   private responder: RepSocket;
 
   constructor(
     private readonly url,
-    private readonly handler: (request, respond: (response) => void) => void
+    private readonly handler: (request: Request | undefined, respond: (response: Response) => void) => void
   ) {
     this.responder = socket('rep');
-    this.responder.on('message', message => this.parser(message));
+    this.responder.on('message', (message: Buffer) => this.parser(message));
     this.responder.bindSync(this.url);
   }
 
-  dispose() {
+  dispose(): void {
     this.responder.unbindSync(this.url);
     this.responder.close();
   }
 
-  private parser(message: Buffer) {
-    const parsed = parseBuffer(message);
-    this.handler(parsed, response => this.respond(response));
+  private parser(message: Buffer): void {
+    const request = parseBuffer<Request>(message);
+    this.handler(request, response => this.respond(response));
   }
 
-  private respond(message: any) {
+  private respond(message: Response): void {
     this.responder.send(JSON.stringify(message));
   }
 }

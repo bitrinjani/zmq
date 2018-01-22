@@ -10,7 +10,7 @@ interface ReqSocket extends EventEmitter {
   close: () => void;
 }
 
-export default class ZmqRequester {
+export default class ZmqRequester<Request, Response> {
   private socket: ReqSocket;
 
   constructor(private readonly url: string, private readonly timeout: number = 5000) {
@@ -18,7 +18,7 @@ export default class ZmqRequester {
     this.socket.connect(this.url);
   }
 
-  async request(message: any): Promise<any> {
+  async request(message: Request): Promise<Response> {
     const reply = await new Promise<Buffer>((resolve, reject) => {
       const rejectTimer = setTimeout(() => reject(new Error('Request timed out.')), this.timeout);
       const clearTimer = () => clearTimeout(rejectTimer);
@@ -28,14 +28,14 @@ export default class ZmqRequester {
       });
       this.socket.send(JSON.stringify(message));
     });
-    const parsed = parseBuffer(reply);
+    const parsed = parseBuffer<Response>(reply);
     if (parsed === undefined) {
       throw new Error('Invalid JSON string received.');
     }
     return parsed;
   }
 
-  dispose() {
+  dispose(): void {
     this.socket.disconnect(this.url);
     this.socket.close();
   }

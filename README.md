@@ -13,9 +13,9 @@ npm install @bitr/zmq
 ### Type definition
 
 ```typescript
-export default class ZmqRequester {
+export default class ZmqRequester<Request, Response> {
   constructor(url: string, timeout?: number);
-  request(message: any): Promise<any>;
+  request(message: Request): Promise<Response>;
   dispose(): void;
 }
 ```
@@ -36,11 +36,13 @@ requester.dispose(); // disconnect + close
 ### Type definition
 
 ```typescript
-export default class ZmqResponder {
-  constructor(url: any, handler: (request, respond: (response) => void) => void);
-  respond(message: any): void;
+export default class ZmqResponder<Request, Response> {
+  constructor(
+    url: string, 
+    handler: (request: Request | undefined, respond: (response: Response) => void) => void);
   dispose(): void;
   private parser(message);
+  private respond(message);
 }
 ```
 

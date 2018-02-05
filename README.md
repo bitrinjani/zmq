@@ -37,9 +37,7 @@ requester.dispose(); // disconnect + close
 
 ```typescript
 export default class ZmqResponder<Request, Response> {
-  constructor(
-    url: string, 
-    handler: (request: Request | undefined, respond: (response: Response) => void) => void);
+  constructor(url: string, handler: (request: Request | undefined, respond: (response: Response) => void) => void);
   dispose(): void;
   private parser(message);
   private respond(message);
@@ -63,4 +61,28 @@ const responder = new ZmqResponder(url, (request, respond) => {
 // responds requests...
 
 responder.dispose(); // unbind + close
+```
+
+## ZmqPublisher / ZmqSubscriber
+
+### Example
+
+```typescript
+  const url = 'tcp://127.0.0.1:9879';
+  const topic = 'topic';
+  const pub = new ZmqPublisher(url);
+  const sub = new ZmqSubscriber(url);
+  
+  // register callback to handle message
+  sub.subscribe(topic, message => {
+    console.log(message);
+  });  
+
+  pub.publish(topic, 'any message');
+  
+  ...
+
+  sub.unsubscribe(topic);
+  sub.dispose();
+  pub.dispose();
 ```

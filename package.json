@@ -25,7 +25,7 @@
     "zeromq": "^4.6.0"
   },
   "devDependencies": {
-    "@types/jest": "^21.1.4",
+    "@types/jest": "^25.2.1",
     "@types/lodash": "^4.14.91",
     "@types/node": "^8.0.46",
     "coveralls": "^3.0.0",

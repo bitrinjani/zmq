@@ -34,6 +34,7 @@
     "typescript": "^2.5.3"
   },
   "jest": {
+    "testURL": "http://localhost/",
     "transform": {
       "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
@@ -45,7 +46,6 @@
       "jsx",
       "json"
     ],
-    "mapCoverage": true,
     "collectCoverageFrom": [
       "**/*.{ts,tsx}",
       "!**/__tests__/**",

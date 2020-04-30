@@ -29,11 +29,12 @@
     "@types/lodash": "^4.14.91",
     "@types/node": "^13.13.4",
     "coveralls": "^3.0.0",
-    "jest": "^21.0.3",
+    "jest": "^22.4.4",
     "ts-jest": "^21.0.0",
     "typescript": "^2.5.3"
   },
   "jest": {
+    "testURL": "http://localhost/",
     "transform": {
       "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
@@ -45,7 +46,6 @@
       "jsx",
       "json"
     ],
-    "mapCoverage": true,
     "collectCoverageFrom": [
       "**/*.{ts,tsx}",
       "!**/__tests__/**",

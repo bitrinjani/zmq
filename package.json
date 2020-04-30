@@ -13,7 +13,9 @@
     "cov": "jest --coverage --runInBand"
   },
   "keywords": [
-    "typescript", "zeromq", "await"
+    "typescript",
+    "zeromq",
+    "await"
   ],
   "repository": "https://github.com/bitrinjani/zmq",
   "author": "bitrinjani <bitrinjani@gmail.com>",
